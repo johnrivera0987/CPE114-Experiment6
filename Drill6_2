@@ -1,0 +1,83 @@
+#! /usr/local/iverilog/bin/vvp
+:ivl_version "11.0 (devel)" "(s20150603-642-g3bdb50da)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "vhdl_sys";
+:vpi_module "vhdl_textio";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0000000001036af0 .scope module, "AllBitTest" "AllBitTest" 2 6;
+ .timescale 0 0;
+v000000000117dc10_0 .var "inputX", 31 0;
+v000000000117dcb0_0 .net "outputO", 0 0, L_0000000001031280;  1 drivers
+v000000000117dd50_0 .net "outputZ", 0 0, L_0000000001036dd0;  1 drivers
+S_0000000001177020 .scope module, "Abit" "AllBit" 2 10, 2 1 0, S_0000000001036af0;
+ .timescale 0 0;
+    .port_info 0 /INPUT 32 "x";
+    .port_info 1 /OUTPUT 1 "zero";
+    .port_info 2 /OUTPUT 1 "one";
+L_0000000001036dd0 .functor NOT 1, L_00000000010311e0, C4<0>, C4<0>, C4<0>;
+v00000000011771b0_0 .net *"_s1", 0 0, L_00000000010311e0;  1 drivers
+v0000000001177250_0 .net "one", 0 0, L_0000000001031280;  alias, 1 drivers
+v00000000011772f0_0 .net "x", 31 0, v000000000117dc10_0;  1 drivers
+v0000000001177390_0 .net "zero", 0 0, L_0000000001036dd0;  alias, 1 drivers
+L_00000000010311e0 .reduce/or v000000000117dc10_0;
+L_0000000001031280 .reduce/and v000000000117dc10_0;
+    .scope S_0000000001036af0;
+T_0 ;
+    %fork t_1, S_0000000001036af0;
+    %fork t_2, S_0000000001036af0;
+    %fork t_3, S_0000000001036af0;
+    %fork t_4, S_0000000001036af0;
+    %fork t_5, S_0000000001036af0;
+    %fork t_6, S_0000000001036af0;
+    %fork t_7, S_0000000001036af0;
+    %join;
+    %join;
+    %join;
+    %join;
+    %join;
+    %join;
+    %join;
+    %jmp t_0;
+t_1 ;
+    %vpi_call 2 12 "$monitor", $time, " ", " ", " %h", v000000000117dc10_0, " %h", v000000000117dcb0_0, " %h", v000000000117dd50_0 {0 0 0};
+    %end;
+t_2 ;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v000000000117dc10_0, 0, 32;
+    %end;
+t_3 ;
+    %delay 1, 0;
+    %pushi/vec4 305419896, 0, 32;
+    %store/vec4 v000000000117dc10_0, 0, 32;
+    %end;
+t_4 ;
+    %delay 2, 0;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v000000000117dc10_0, 0, 32;
+    %end;
+t_5 ;
+    %delay 3, 0;
+    %pushi/vec4 4294967295, 0, 32;
+    %store/vec4 v000000000117dc10_0, 0, 32;
+    %end;
+t_6 ;
+    %delay 4, 0;
+    %pushi/vec4 32, 0, 32;
+    %store/vec4 v000000000117dc10_0, 0, 32;
+    %end;
+t_7 ;
+    %delay 4, 0;
+    %vpi_call 2 18 "$finish" {0 0 0};
+    %end;
+    .scope S_0000000001036af0;
+t_0 ;
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "Drill6_2.vl";
